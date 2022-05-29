@@ -6,6 +6,7 @@ public class Map {
     private static TreeMap<Integer, City> cityMap = ReadXmlDomParser.creaMappa();
 
     public static TreeMap<Integer, City> getCityMap() {
+
         return cityMap;
     }
 

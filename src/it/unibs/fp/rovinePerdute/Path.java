@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Path {
     public static double cost = 0;
+    public static TreeMap<Integer, City> map = Map.getCityMap();
+    public static TreeMap<Integer, Node> nodes = new TreeMap<>();
 
     public static double getCost() {
         return cost;
@@ -14,8 +16,14 @@ public class Path {
     }
 
     public static TreeMap<Integer, Node> createNodes() {
-        TreeMap<Integer, Node> nodes = new TreeMap<>();
-        TreeMap<Integer, City> map = Map.getCityMap();
+        if(nodes.size() != 0) {
+            Collection<Node> nodesC = nodes.values();
+            nodesC.forEach(value -> value.parent = null);
+            nodesC.forEach(value -> value.f = 0);
+            nodesC.forEach(value -> value.g = 0);
+            nodesC.forEach(value -> value.h = 0);
+            return nodes;
+        }
 
         Collection<City> cities = map.values();
         cities.forEach(value -> nodes.put(value.getId(), new Node(value)));
@@ -24,7 +32,7 @@ public class Path {
             Node n = nodes.get(i);
             for(int j = 0; j < n.city.getLink().size(); j++) {
                 Node branch = nodes.get(n.city.getLinkByIndex(j));
-                n.addBranch(n.calculateHeuristicEuclideo(branch), branch);
+                n.addBranch(n.calculateHeuristicEuclideo(branch), n.calculateHeuristicAltitude(branch), branch);
             }
         }
 
@@ -67,7 +75,7 @@ public class Path {
 
             for(Node.Edge edge : n.neighbors){
                 Node m = edge.node;
-                double totalWeight = n.g + edge.weight;
+                double totalWeight = n.g + edge.weightD;
 
                 if(!openList.contains(m) && !closedList.contains(m)){
                     m.parent = n;
@@ -96,6 +104,8 @@ public class Path {
 
     public static ArrayList<Integer> getPathEuclideo() {
         TreeMap<Integer, Node> nodes = createNodes();
+        Collection<Node> nodesC = nodes.values();
+        nodesC.forEach(value -> value.parent = null);
 
         Node head = nodes.get(0);
         head.g = 0;
@@ -123,7 +133,7 @@ public class Path {
 
             for(Node.Edge edge : n.neighbors){
                 Node m = edge.node;
-                double totalWeight = n.g + edge.weight;
+                double totalWeight = n.g + edge.weightH;
 
                 if(!openList.contains(m) && !closedList.contains(m)){
                     m.parent = n;
@@ -154,7 +164,7 @@ public class Path {
         TreeMap<Integer, Node> nodes = createNodes();
 
         Node head = nodes.get(0);
-        head.g = head.city.getH();
+        head.g = 0;
 
         Node target = nodes.get(nodes.size() - 1);
 

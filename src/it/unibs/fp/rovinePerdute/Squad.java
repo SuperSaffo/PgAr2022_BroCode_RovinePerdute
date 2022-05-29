@@ -6,12 +6,14 @@ import java.util.TreeMap;
 public class Squad {
     private String team;
     private double cost;
-    private ArrayList<Integer> cityPath;
-    private ArrayList<City> city;
-    private int cities = city.size();
+    private TreeMap<Integer, City> map;
+    private ArrayList<Integer> cityPath = new ArrayList<>();
+    private ArrayList<City> city = new ArrayList<>();
+    private int nCities;
 
-    public Squad(String team) {
+    public Squad(String team, TreeMap<Integer, City> map) {
         this.team = team;
+        this.map = map;
     }
 
     public String getTeam() {
@@ -26,12 +28,20 @@ public class Squad {
         return cityPath;
     }
 
+    public int getCityId(int index) {
+        return cityPath.get(index);
+    }
+
     public ArrayList<City> getCity() {
         return city;
     }
 
-    public int getCities() {
-        return cities;
+    public int getnCities() {
+        return nCities;
+    }
+
+    public TreeMap<Integer, City> getMap() {
+        return map;
     }
 
     public void setTeam(String team) {
@@ -54,7 +64,7 @@ public class Squad {
         this.city.add(c);
     }
 
-    public void setCities(int cities) {
-        this.cities = cities;
+    public void setnCities(int nCities) {
+        this.nCities = nCities;
     }
 }

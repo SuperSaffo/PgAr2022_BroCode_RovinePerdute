@@ -29,17 +29,19 @@ public class Node implements Comparable<Node>{
     }
 
     public static class Edge {
-        public double weight;
+        public double weightD;
+        public double weightH;
         public Node node;
 
-        Edge(double weight, Node node){
-            this.weight = weight;
+        Edge(double weightD, double weightH, Node node){
+            this.weightD = weightD;
+            this.weightH = weightH;
             this.node = node;
         }
     }
 
-    public void addBranch(double weight, Node node){
-        Edge newEdge = new Edge(weight, node);
+    public void addBranch(double weightD, double weightH, Node node){
+        Edge newEdge = new Edge(weightD, weightH, node);
         neighbors.add(newEdge);
     }
 

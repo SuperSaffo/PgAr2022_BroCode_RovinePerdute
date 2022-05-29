@@ -1,23 +1,26 @@
 package it.unibs.fp.rovinePerdute;
+
+import java.util.TreeMap;
+
 //DISTANZA EUCLIDEA
 public class Tonatiuh extends Squad {
     private static final String NAME = "Tonatiuh";
 
-    public Tonatiuh() {
-        super(NAME);
+    public Tonatiuh(TreeMap<Integer, City> map) {
+        super(NAME, map);
     }
 
     public void findPath() {
         //CITY PATH
         setCityPath(Path.getPathEuclideo());
         //LIST OF CITIES
-        for(int i = 0; i < getCityPath().size(); i++) {
-            addCity(Map.getCityByKey(getCityPath().get(i)));
+        for(int key : getCityPath()) {
+            addCity(getMap().get(key));
         }
         //COST
         setCost(Path.getCost());
         //NUMBER OF CITIES
-        setCities(getCityPath().size());
+        setnCities(getCityPath().size());
     }
 
 
