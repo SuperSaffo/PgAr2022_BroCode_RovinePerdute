@@ -1,13 +1,14 @@
 package it.unibs.fp.rovinePerdute;
 
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class Squad {
-    String team;
-    double cost;
-    Map map;
-    ArrayList<City> city;
-    int cities = city.size();
+    private String team;
+    private double cost;
+    private ArrayList<Integer> cityPath;
+    private ArrayList<City> city;
+    private int cities = city.size();
 
     public Squad(String team) {
         this.team = team;
@@ -21,8 +22,8 @@ public class Squad {
         return cost;
     }
 
-    public Map getMap() {
-        return map;
+    public ArrayList<Integer> getCityPath() {
+        return cityPath;
     }
 
     public ArrayList<City> getCity() {
@@ -41,12 +42,16 @@ public class Squad {
         this.cost = cost;
     }
 
-    public void setMap(Map map) {
-        this.map = map;
+    public void setCityPath(ArrayList<Integer> cityPath) {
+        this.cityPath = cityPath;
     }
 
     public void setCity(ArrayList<City> city) {
         this.city = city;
+    }
+
+    public void addCity(City c) {
+        this.city.add(c);
     }
 
     public void setCities(int cities) {
