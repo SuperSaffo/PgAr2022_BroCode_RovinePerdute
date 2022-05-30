@@ -15,6 +15,18 @@ public class Path {
         Path.cost = cost;
     }
 
+    /**
+     * Metodo per creare i nodi
+     * <p>Se l'ArrayList di nodi esiste gia' vengono azzerati: parent, f, g, h</p>
+     * <p>Se l'ArrayList e' vuoto per ogni citta' viene creato un  nodo</p>
+     * <p>Per ogni nodo vengono aggiunti i nodi a cui e' legato</p>
+     *
+     * @see Node
+     * @see City
+     * @see it.unibs.fp.rovinePerdute.Node.Edge
+     * @see Node#addBranch(double, double, Node)
+     * @return Ritorna ArrayList di nodi
+     */
     public static TreeMap<Integer, Node> createNodes() {
         if(nodes.size() != 0) {
             Collection<Node> nodesC = nodes.values();
@@ -39,6 +51,11 @@ public class Path {
         return nodes;
     }
 
+    /**
+     * Metodo per creare il percorso e inserirlo in un ArrayList
+     * @param target
+     * @return
+     */
     public static ArrayList<Integer> createPath(Node target){
         Node n = target;
 
@@ -47,16 +64,16 @@ public class Path {
 
         setCost(n.f);
 
-        ArrayList<Integer> ids = new ArrayList<>();
+        ArrayList<Integer> path = new ArrayList<>();
 
         while(n.parent != null){
-            ids.add(n.id);
+            path.add(n.id);
             n = n.parent;
         }
-        ids.add(n.id);
-        Collections.reverse(ids);
+        path.add(n.id);
+        Collections.reverse(path);
 
-        return ids;
+        return path;
     }
 
     //SQUADRA TONATIUH

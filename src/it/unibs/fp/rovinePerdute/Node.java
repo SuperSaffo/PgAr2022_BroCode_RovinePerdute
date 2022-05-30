@@ -6,13 +6,8 @@ public class Node implements Comparable<Node>{
     // Id for readability of result purposes
     public int id;
     public City city;
-
-    // Parent in the path
     public Node parent = null;
-
     public ArrayList<Edge> neighbors;
-
-    // Evaluation functions
     public double f;
     public double g;
     public double h;
