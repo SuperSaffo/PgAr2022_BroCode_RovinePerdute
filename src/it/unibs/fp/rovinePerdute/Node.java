@@ -40,7 +40,7 @@ public class Node implements Comparable<Node>{
         neighbors.add(newEdge);
     }
 
-    public double calculateHeuristicEuclideo(Node target){
+    public double calculateHeuristicEuclidean(Node target){
         return Math.sqrt(Math.pow(target.city.getX() - this.city.getX(), 2) + Math.pow(target.city.getY() - this.city.getY(), 2));
     }
 

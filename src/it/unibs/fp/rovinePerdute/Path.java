@@ -44,7 +44,7 @@ public class Path {
             Node n = nodes.get(i);
             for(int j = 0; j < n.city.getLink().size(); j++) {
                 Node branch = nodes.get(n.city.getLinkByIndex(j));
-                n.addBranch(n.calculateHeuristicEuclideo(branch), n.calculateHeuristicAltitude(branch), branch);
+                n.addBranch(n.calculateHeuristicEuclidean(branch), n.calculateHeuristicAltitude(branch), branch);
             }
         }
 
@@ -52,18 +52,23 @@ public class Path {
     }
 
     /**
-     * Metodo per creare il percorso e inserirlo in un ArrayList
-     * @param target
-     * @return
+     * Metodo per leggere il percorso e inserirlo in un ArrayList
+     * <p>Viene salvato il costo totale del percorso</p>
+     * <p>Vengono fatti scorrere i nodi dal punto di arrivo al punto di partenza con la variabile parent</p>
+     * <p>L'ArrayList degli ID del percorso viene invertito, in modo da andare dal punto di partenza al punto di arrivo</p>
+     *
+     * @param target Nodo di arrivo
+     * @see Squad#setCost(double)
+     * @see Node#parent
+     * @see Collections#reverse(List)
+     * @return Ritorna un ArrayLIst con gli ID delle citta'
      */
     public static ArrayList<Integer> createPath(Node target){
         Node n = target;
-
         if(n == null)
             return null;
 
         setCost(n.f);
-
         ArrayList<Integer> path = new ArrayList<>();
 
         while(n.parent != null){
@@ -77,11 +82,11 @@ public class Path {
     }
 
     //SQUADRA TONATIUH
-    public static Node aStarEuclideo(Node start, Node target){
+    public static Node aStarEuclidean(Node start, Node target){
         PriorityQueue<Node> closedList = new PriorityQueue<>();
         PriorityQueue<Node> openList = new PriorityQueue<>();
 
-        start.f = start.g + start.calculateHeuristicEuclideo(target);
+        start.f = start.g + start.calculateHeuristicEuclidean(target);
         openList.add(start);
 
         while(!openList.isEmpty()){
@@ -97,13 +102,13 @@ public class Path {
                 if(!openList.contains(m) && !closedList.contains(m)){
                     m.parent = n;
                     m.g = totalWeight;
-                    m.f = m.g + m.calculateHeuristicEuclideo(target);
+                    m.f = m.g + m.calculateHeuristicEuclidean(target);
                     openList.add(m);
                 } else {
                     if(totalWeight < m.g){
                         m.parent = n;
                         m.g = totalWeight;
-                        m.f = m.g + m.calculateHeuristicEuclideo(target);
+                        m.f = m.g + m.calculateHeuristicEuclidean(target);
 
                         if(closedList.contains(m)){
                             closedList.remove(m);
@@ -130,7 +135,7 @@ public class Path {
         Node target = nodes.get(nodes.size() - 1);
 
 
-        Node res = aStarEuclideo(head, target);
+        Node res = aStarEuclidean(head, target);
         return createPath(res);
     }
 
