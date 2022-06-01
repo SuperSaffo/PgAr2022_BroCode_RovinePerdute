@@ -1,5 +1,6 @@
 package it.unibs.fp.rovinePerdute;
 
+import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
@@ -15,10 +16,23 @@ public class Metzil extends Squad {
      * COstruttore della classe
      * @param map TreeMap contenente le citta
      */
-    public Metzil(TreeMap<Integer, City> map) {
-        super(NAME, map);
+    public Metzil() {
+        super(NAME);
     }
 
+    /**
+     * Metodo per settare i valori della squadra Metzil
+     * <p>Viene settato il cityPath, viene creato ArrayList delle citta' del percorso,
+     * viene settato il costo del percorso, viene settato il numero di citta' per cui si passa</p>
+     * @see Squad#setCityPath(ArrayList)
+     * @see Path#getPathAltitude()
+     * @see Squad#addCity(City)
+     * @see Map#getCityByKey(int)
+     * @see Squad#setCost(double)
+     * @see Path#getCost()
+     * @see Squad#setnCities(int)
+     * @see Squad#getCityPath()
+     */
     public void findPath() {
         setCityPath(Path.getPathAltitude());
 

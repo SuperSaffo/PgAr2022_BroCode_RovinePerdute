@@ -6,7 +6,6 @@ import java.util.TreeMap;
 /**
  * Classe squadra generica
  */
-
 public class Squad {
     /**
      * Nome del team
@@ -16,19 +15,25 @@ public class Squad {
      * Carburante utilizzato
      */
     private double cost;
-    private TreeMap<Integer, City> map;
+    /**
+     * ID delle citta' del percorso
+     */
     private ArrayList<Integer> cityPath = new ArrayList<>();
+    /**
+     * Citta' del percorso
+     */
     private ArrayList<City> city = new ArrayList<>();
+    /**
+     * Numero di citta' del percorso
+     */
     private int nCities;
 
     /**
      * Costruttore della classe squadra
      * @param team rappresenta il nome del team
-     * @param map mappa chiave valore
      */
-    public Squad(String team, TreeMap<Integer, City> map) {
+    public Squad(String team) {
         this.team = team;
-        this.map = map;
     }
 
     /**
@@ -56,78 +61,58 @@ public class Squad {
     }
 
     /**
-     * Metodo che ID per una città
-     * @param index variabile indice
-     * @return ritorna l'ID di una città
+     * Getter dell'ID di una citta nell'ArrayList diID dato un indice
+     * @param index Indice dell'ID
+     * @return Ritorna l'ID di una città data la sua posizione nell'ArrayList
      */
     public int getCityId(int index) {
         return cityPath.get(index);
     }
 
     /**
-     * Getter city
-     * @return ritorna un'arrayList di città
+     * Getter dell'ArrayList di Citta' del percorso
+     * @return Ritorna l'ArrayList di città del percorso
      */
     public ArrayList<City> getCity() {
         return city;
     }
 
     /**
-     * Getter nCity
-     * @return ritorna il numero di città percorse
+     * Getter del numero di citta' del percorso
+     * @return Ritorna il numero di città percorse
      */
     public int getnCities() {
         return nCities;
     }
 
     /**
-     * Getter getMap
-     * @return ritorna una mappa chiave(Integer) valore(citta)
-     */
-    public TreeMap<Integer, City> getMap() {
-        return map;
-    }
-
-    /*
-    public void setTeam(String team) {
-        this.team = team;
-    }
-     */
-
-    /**
-     * Setter cost
-     * <p>Set carburante utilizzato</p>
-     * @param cost quantità carburante
+     * Setter del costo del percorso
+     * @param cost Quantità di carburante utilizzata
      */
     public void setCost(double cost) {
         this.cost = cost;
     }
 
-
+    /**
+     * Setter dell'ArrayList degli ID delle citta' percorse
+     * @param cityPath ArrayList di ID
+     */
     public void setCityPath(ArrayList<Integer> cityPath) {
         this.cityPath = cityPath;
     }
 
     /**
-     * Setter city
-     * <p>Set city in un arrayLIst</p>
-     * @param city
-     */
-    public void setCity(ArrayList<City> city) {
-        this.city = city;
-    }
-
-    /**
-     * Metodo per aggiungere un nuovo città all'arrayList
-     * @param c nuova città
+     * Metodo per aggiungere una nuova città Nell'ArrayList di citta'
+     * @param c Nuova citta' da aggiungere
+     * @see Squad#city
      */
     public void addCity(City c) {
         this.city.add(c);
     }
 
     /**
-     * Set numero città attraversate
-     * @param nCities numero città
+     * Setter del numero città attraversate
+     * @param nCities Numero di città attraversate
      */
     public void setnCities(int nCities) {
         this.nCities = nCities;

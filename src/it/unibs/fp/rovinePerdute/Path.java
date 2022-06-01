@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Path {
     /**
-     * costo del percorso
+     * Costo del percorso
      */
     public static double cost = 0;
     /**

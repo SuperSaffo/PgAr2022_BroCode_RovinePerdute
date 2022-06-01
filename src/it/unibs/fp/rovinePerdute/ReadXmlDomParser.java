@@ -19,7 +19,6 @@ import java.util.TreeMap;
 /**
  * Classe per lettura file tramite DOMParser
  */
-
 public class ReadXmlDomParser {
 
     // FILE
@@ -34,9 +33,8 @@ public class ReadXmlDomParser {
      * Metodo per scelta file da utilizzare all'interno del programma
      * @see MyMenu#MyMenu(String, String[])
      * @see MyMenu#scegli()
-     * @return ritorna la scelta
+     * @return Ritorna la scelta
      */
-
     public static int sceltaMappa() {
         MyMenu menuMappe = new MyMenu("Scegli dimensione mappa:", new String[]{"5 citta", "12 citta", "50 citta", "200 citta", "2000 citta", "10000 citta"});
         int scelta;
@@ -49,7 +47,7 @@ public class ReadXmlDomParser {
     /**
      * Metodo per selezionare il file scelto
      * @see #sceltaMappa()
-     * @return ritorna il file
+     * @return Ritorna il file
      */
     public static String nomeFile() {
         int scelta = sceltaMappa();
@@ -74,51 +72,47 @@ public class ReadXmlDomParser {
     }
 
     /**
-     * Metodo per la lettura del file
-     * <p> Dopo la lettura salva i dati all'interno di una mappa</p>
-     * @return ritorna la mappa
+     * Metodo per la lettura del file contenente le citta'
+     * <p>Le citta' vengono inserite in una TreeMap, ogni citta' ha un codice univoco (ID)</p>
+     * @return Ritorna la TreeMap di citta'
      */
     public static TreeMap<Integer, City> creaMappa() {
         TreeMap<Integer, City> map = new TreeMap<>();
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 
         try {
-            // optional, but recommended
             // process XML securely, avoid attacks like XML External Entities (XXE)
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-
             // parse XML file
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(new File(nomeFile()));
 
-            // optional, but recommended
-            // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
             doc.getDocumentElement().normalize();
 
             NodeList list = doc.getElementsByTagName("city");
 
-            for (int temp = 0; temp < list.getLength(); temp++) {
-
-                Node node = list.item(temp);
+            for (int i = 0; i < list.getLength(); i++) {
+                Node node = list.item(i);
 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
                     City newCity = new City();
 
                     Element element = (Element) node;
 
-                    // get city attributes
+                    //Attributi di city
                     newCity.setId(Integer.parseInt(element.getAttribute("id")));
                     newCity.setName(element.getAttribute("name"));
                     newCity.setX(Integer.parseInt(element.getAttribute("x")));
                     newCity.setY(Integer.parseInt(element.getAttribute("y")));
                     newCity.setH(Integer.parseInt(element.getAttribute("h")));
 
-                    //LETTURA DEI LINK
+                    //Lettura di link
                     ArrayList<Integer> links = new ArrayList<>();
                     NodeList linkNodeList = element.getElementsByTagName("link");
 
-                    for(int i = 0; i < linkNodeList.getLength(); i++) {
-                        Node linkNode =  linkNodeList.item(i);
+                    for(int j = 0; j < linkNodeList.getLength(); j++) {
+                        Node linkNode =  linkNodeList.item(j);
+                        //Attributi di link
                         if(linkNode.getNodeType() == linkNode.ELEMENT_NODE) {
                             Element e = (Element) linkNode;
                             links.add(Integer.parseInt(e.getAttribute("to")));
