@@ -2,23 +2,32 @@ package it.unibs.fp.rovinePerdute;
 
 import java.util.TreeMap;
 
+/**
+ * Classe per il controllo della squadra Metzil, eredita da Squad
+ */
 public class Metzil extends Squad {
+    /**
+     * Nome della squadra
+     */
     private static final String NAME = "Metzil";
 
+    /**
+     * COstruttore della classe
+     * @param map TreeMap contenente le citta
+     */
     public Metzil(TreeMap<Integer, City> map) {
         super(NAME, map);
     }
 
     public void findPath() {
-        //CITY PATH
         setCityPath(Path.getPathAltitude());
-        //LIST OF CITIES
+
         for(int key : getCityPath()) {
-            addCity(getMap().get(key));
+            addCity(Map.getCityByKey(key));
         }
-        //COST
+
         setCost(Path.getCost());
-        //NUMBER OF CITIES
+
         setnCities(getCityPath().size());
     }
 }

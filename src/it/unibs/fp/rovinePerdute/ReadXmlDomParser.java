@@ -1,5 +1,6 @@
 package it.unibs.fp.rovinePerdute;
 
+import it.unibs.fp.mylib.MyMenu;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -15,14 +16,68 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class ReadXmlDomParser {
-    private static final String FILENAME = "PgAr_Map_5.xml";
-    //private static final String FILENAME = "PgAr_Map_12.xml";
-    //private static final String FILENAME = "PgAr_Map_50.xml";
-    //private static final String FILENAME = "PgAr_Map_200.xml";
-    //private static final String FILENAME = "PgAr_Map_2000.xml";
-    //private static final String FILENAME = "PgAr_Map_10000.xml";
+/**
+ * Classe per lettura file tramite DOMParser
+ */
 
+public class ReadXmlDomParser {
+
+    // FILE
+    private static final String FILENAME_MAP_5 = "PgAr_Map_5.xml";
+    private static final String FILENAME_MAP_12= "PgAr_Map_12.xml";
+    private static final String FILENAME_MAP_50 = "PgAr_Map_50.xml";
+    private static final String FILENAME_MAP_200 = "PgAr_Map_200.xml";
+    private static final String FILENAME_MAP_2000 = "PgAr_Map_2000.xml";
+    private static final String FILENAME_MAP_10000= "PgAr_Map_10000.xml";
+
+    /**
+     * Metodo per scelta file da utilizzare all'interno del programma
+     * @see MyMenu#MyMenu(String, String[])
+     * @see MyMenu#scegli()
+     * @return ritorna la scelta
+     */
+
+    public static int sceltaMappa() {
+        MyMenu menuMappe = new MyMenu("Scegli dimensione mappa:", new String[]{"5 citta", "12 citta", "50 citta", "200 citta", "2000 citta", "10000 citta"});
+        int scelta;
+        do{
+            scelta = menuMappe.scegli();
+        }while(scelta == 0);
+        return scelta;
+    }
+
+    /**
+     * Metodo per selezionare il file scelto
+     * @see #sceltaMappa()
+     * @return ritorna il file
+     */
+    public static String nomeFile() {
+        int scelta = sceltaMappa();
+
+        switch(scelta) {
+            case 1:
+                return FILENAME_MAP_5;
+            case 2:
+                return FILENAME_MAP_12;
+            case 3:
+                return FILENAME_MAP_50;
+            case 4:
+                return FILENAME_MAP_200;
+            case 5:
+                return FILENAME_MAP_2000;
+            case 6:
+                return FILENAME_MAP_10000;
+            default:
+                break;
+        }
+        return FILENAME_MAP_5;
+    }
+
+    /**
+     * Metodo per la lettura del file
+     * <p> Dopo la lettura salva i dati all'interno di una mappa</p>
+     * @return ritorna la mappa
+     */
     public static TreeMap<Integer, City> creaMappa() {
         TreeMap<Integer, City> map = new TreeMap<>();
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -34,7 +89,7 @@ public class ReadXmlDomParser {
 
             // parse XML file
             DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(new File(FILENAME));
+            Document doc = db.parse(new File(nomeFile()));
 
             // optional, but recommended
             // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
