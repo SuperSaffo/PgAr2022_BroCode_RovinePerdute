@@ -6,13 +6,34 @@ import java.util.ArrayList;
  * Classe per creazione di una citta'
  */
 public class City {
+    /**
+     * ID della citta'
+     */
     private int id;
+    /**
+     * Nome della citta'
+     */
     private String name;
+    /**
+     * Coordinata X della citta'
+     */
     private int x;
+    /**
+     * Coordinata Y della citta'
+     */
     private int y;
+    /**
+     * Altitudine della citta'
+     */
     private int h;
+    /**
+     * Lista degli ID delle citta' a cui e' collegata
+     */
     private ArrayList<Integer> link;
 
+    /**
+     * Costruttore vuoto di city
+     */
     public City() {
     }
 

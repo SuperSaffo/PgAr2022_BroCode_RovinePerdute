@@ -7,6 +7,9 @@ import javax.xml.transform.TransformerException;
 import java.util.Collection;
 import java.util.TreeMap;
 
+/**
+ * Classe Main
+ */
 public class Main {
     public static void main(String[] args) throws ParserConfigurationException, TransformerException {
         TreeMap<Integer, City> map = Map.getCityMap();

@@ -36,7 +36,7 @@ public class ReadXmlDomParser {
      * @return Ritorna la scelta
      */
     public static int sceltaMappa() {
-        MyMenu menuMappe = new MyMenu("Scegli dimensione mappa:", new String[]{"5 citta", "12 citta", "50 citta", "200 citta", "2000 citta", "10000 citta"});
+        MyMenu menuMappe = new MyMenu("Scegli dimensione mappa (No 0):", new String[]{"5 citta'", "12 citta'", "50 citta'", "200 citta'", "2000 citta'", "10000 citta'"});
         int scelta;
         do{
             scelta = menuMappe.scegli();
