@@ -14,8 +14,17 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+/**
+ * Classe per scrittura di un file tramite DOMParser
+ */
 public class WriteXmlDomParser {
-
+    /**
+     * Metodo per scrivere i dati sul file "Routes.xml"
+     * @param t Squadra Tonatiuh
+     * @param m Squadra Metzil
+     * @throws ParserConfigurationException
+     * @throws TransformerException
+     */
     public static void printRoutes(Tonatiuh t, Metzil m) throws ParserConfigurationException, TransformerException {
         ArrayList<Squad> squads = new ArrayList<>();
         squads.add(t);
@@ -48,8 +57,10 @@ public class WriteXmlDomParser {
             }
         }
 
+        //Scrittura del file sul terminale
         writeXml(doc, System.out);
 
+        //Scrittura del file
         try (FileOutputStream output = new FileOutputStream("Routes.xml")) {
             writeXml(doc, output);
         } catch (IOException e) {
@@ -58,6 +69,12 @@ public class WriteXmlDomParser {
 
     }
 
+    /**
+     * Metodo per scrivere sul file XML
+     * @param doc Nuovo documento con dati da scrivere
+     * @param output File su cui scrivere
+     * @throws TransformerException
+     */
     private static void writeXml(Document doc, OutputStream output) throws TransformerException {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();

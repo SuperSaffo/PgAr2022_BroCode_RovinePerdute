@@ -13,8 +13,7 @@ public class Metzil extends Squad {
     private static final String NAME = "Metzil";
 
     /**
-     * COstruttore della classe
-     * @param map TreeMap contenente le citta
+     * Costruttore della classe
      */
     public Metzil() {
         super(NAME);

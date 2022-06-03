@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 /**
- * Classe per lettura file tramite DOMParser
+ * Classe per lettura di un file tramite DOMParser
  */
 public class ReadXmlDomParser {
 

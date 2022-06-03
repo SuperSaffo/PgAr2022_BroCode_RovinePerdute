@@ -2,6 +2,9 @@ package it.unibs.fp.rovinePerdute;
 
 import java.util.*;
 
+/**
+ * Classe per creazione dei nodi
+ */
 public class Node implements Comparable<Node>{
     /**
      * ID del nodo
@@ -12,7 +15,7 @@ public class Node implements Comparable<Node>{
      */
     public City city;
     /**
-     * Parent viene instanziato al nodo precedente nel percorso
+     * Parent viene istanziato al nodo precedente nel percorso
      */
     public Node parent = null;
     /**

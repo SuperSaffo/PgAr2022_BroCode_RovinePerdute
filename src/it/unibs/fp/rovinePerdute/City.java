@@ -2,6 +2,9 @@ package it.unibs.fp.rovinePerdute;
 
 import java.util.ArrayList;
 
+/**
+ * Classe per creazione di una citta'
+ */
 public class City {
     private int id;
     private String name;

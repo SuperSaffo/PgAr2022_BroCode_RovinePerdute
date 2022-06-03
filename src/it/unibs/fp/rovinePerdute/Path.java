@@ -2,6 +2,9 @@ package it.unibs.fp.rovinePerdute;
 
 import java.util.*;
 
+/**
+ * Classe per la creazione del percorso
+ */
 public class Path {
     /**
      * Costo del percorso
